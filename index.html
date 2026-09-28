@@ -92,32 +92,11 @@
   .step h3 { margin: 0 0 6px; font-size: 1.02rem; }
   .step p { margin: 0; color: var(--text-dim); font-size: 0.94rem; }
 
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
-  .card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
-  .card h3 { margin: 0 0 6px; font-size: 1rem; }
-  .card p { margin: 0; color: var(--text-dim); font-size: 0.92rem; }
-
-  .roadmap-note {
-    display: inline-block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.04em; color: var(--warn-text); background: var(--warn-bg);
-    border: 1px solid var(--warn-border); padding: 5px 12px; border-radius: 999px; margin-bottom: 20px;
-  }
-  .roadmap-list { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
-  .roadmap-list li {
-    background: var(--bg-elev); border: 1px dashed var(--border); color: var(--text-dim);
-    padding: 9px 16px; border-radius: 999px; font-size: 0.9rem;
-  }
-
   .cta-box {
     background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
     padding: 36px; text-align: center;
   }
   .cta-box p { color: var(--text-dim); max-width: 520px; margin: 0 auto 22px; }
-
-  .faq-item { border-top: 1px solid var(--border); padding: 18px 0; }
-  .faq-item:first-child { border-top: none; }
-  .faq-item h3 { margin: 0 0 8px; font-size: 1rem; }
-  .faq-item p { margin: 0; color: var(--text-dim); }
 
   footer.site { padding: 34px 0 50px; color: var(--text-dim); font-size: 0.88rem; }
 
@@ -172,23 +151,6 @@
   </div>
 </section>
 
-<section id="today">
-  <div class="wrap">
-    <h2 data-i18n="today.title"></h2>
-    <p class="section-lead" data-i18n="today.lead"></p>
-    <div class="cards" id="today-cards"></div>
-  </div>
-</section>
-
-<section id="roadmap">
-  <div class="wrap">
-    <span class="roadmap-note" data-i18n="roadmap.badge"></span>
-    <h2 data-i18n="roadmap.title"></h2>
-    <p class="section-lead" data-i18n="roadmap.lead"></p>
-    <ul class="roadmap-list" id="roadmap-list"></ul>
-  </div>
-</section>
-
 <section id="why">
   <div class="wrap">
     <h2 data-i18n="why.title"></h2>
@@ -204,13 +166,6 @@
       <a class="btn" data-i18n="cta.button" data-survey-link href="#" target="_blank" rel="noopener"></a>
       <div class="btn-sub" data-i18n="cta.sub"></div>
     </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <h2 data-i18n="faq.title"></h2>
-    <div id="faq-list"></div>
   </div>
 </section>
 
@@ -241,23 +196,6 @@ const I18N = {
       step2: { title: "It streams live, peer-to-peer", body: "Video is sent directly (WebRTC) to whoever you share the link with — our server only helps the two devices connect." },
       step3: { title: "Watch from any browser", body: "Open the private link on a laptop or another phone. No separate viewer app to install." }
     },
-    today: {
-      title: "What's built today",
-      lead: "This is a real, working beta — here's what's actually in it right now.",
-      cards: [
-        { title: "Live WebRTC streaming", body: "Real-time video with low latency between your camera phone and viewer." },
-        { title: "Browser-based viewer", body: "Watch from any modern browser — nothing to install to view a stream." },
-        { title: "Local recording", body: "A continuous MP4 archive is recorded and stored on the camera device itself." },
-        { title: "iOS + Android apps", body: "Native camera apps for both platforms." },
-        { title: "Private access", body: "Streams are protected by a private link/token — not publicly listed anywhere." }
-      ]
-    },
-    roadmap: {
-      badge: "Not yet built — help us prioritize",
-      title: "Coming soon",
-      lead: "These are on the roadmap, not in the app yet. Your survey answers directly shape what we build next.",
-      items: ["Motion & person detection", "Pricing / one-time purchase option", "Multiple cameras in one view", "Two-way audio", "Sound detection", "Night vision tuning"]
-    },
     why: {
       title: "Why we're asking",
       body: "SecondSight is pre-launch. Before we build further, we want to hear from people who've actually dealt with old surveillance-camera apps — what worked, what didn't, and what would make you use this. The survey takes about 5 minutes, and every question except the beta-invite email is optional."
@@ -267,15 +205,6 @@ const I18N = {
       body: "Your answers directly shape what gets built next — and what doesn't.",
       button: "Take the survey",
       sub: "Want early access? Leave your email at the end of the survey — that's the only way we collect it."
-    },
-    faq: {
-      title: "FAQ",
-      items: [
-        { q: "Is SecondSight available to download right now?", a: "Not publicly yet — we're in private beta. Take the survey and leave your email if you'd like an invite." },
-        { q: "Which phones are supported?", a: "iOS and Android. Older devices are the whole point — if it's been sitting in a drawer, it's a candidate." },
-        { q: "Where does my video go?", a: "Video streams peer-to-peer between the camera phone and whoever you share the link with. Our relay server only helps the two devices find each other — it never stores or has access to the video itself." },
-        { q: "What's already built vs. planned?", a: "See “What's built today” vs. “Coming soon” above — we're intentionally transparent about this since we're still validating what to build next." }
-      ]
     },
     footer: { text: "Questions? Reach out — contact details on request." }
   },
@@ -293,23 +222,6 @@ const I18N = {
       step2: { title: "Transmite live, peer-to-peer", body: "Video-ul este trimis direct (WebRTC) către persoana cu care distribui linkul — serverul nostru ajută doar cele două dispozitive să se conecteze." },
       step3: { title: "Vizionează din orice browser", body: "Deschide linkul privat pe un laptop sau alt telefon. Nu e nevoie de nicio aplicație separată pentru vizionare." }
     },
-    today: {
-      title: "Ce este funcțional acum",
-      lead: "Este o versiune beta reală, funcțională — iată ce conține chiar acum.",
-      cards: [
-        { title: "Streaming live (WebRTC)", body: "Video în timp real, cu latență redusă, între telefonul-cameră și cel care vizionează." },
-        { title: "Vizualizare din browser", body: "Vizionează din orice browser modern — nu ai nevoie de nimic instalat." },
-        { title: "Înregistrare locală", body: "O arhivă video MP4 continuă este înregistrată și stocată local, pe dispozitivul cameră." },
-        { title: "Aplicații iOS + Android", body: "Aplicații native pentru ambele platforme." },
-        { title: "Acces privat", body: "Fluxurile sunt protejate printr-un link/token privat — nu sunt listate public nicăieri." }
-      ]
-    },
-    roadmap: {
-      badge: "Nu este încă construit — ajută-ne să prioritizăm",
-      title: "Urmează",
-      lead: "Acestea sunt planificate, dar nu sunt încă în aplicație. Răspunsurile tale la sondaj influențează direct ce construim în continuare.",
-      items: ["Detectare mișcare și persoane", "Preț / opțiune de achiziție unică", "Mai multe camere într-o singură vizualizare", "Audio bidirecțional", "Detectare sunet", "Reglaj viziune nocturnă"]
-    },
     why: {
       title: "De ce întrebăm",
       body: "SecondSight este înainte de lansare. Înainte să continuăm dezvoltarea, vrem să auzim părerea unor oameni care au folosit cu adevărat aplicații vechi de supraveghere — ce a funcționat, ce nu, și ce te-ar face să folosești asta. Sondajul durează aproximativ 5 minute, iar toate întrebările, cu excepția e-mailului pentru invitația beta, sunt opționale."
@@ -319,15 +231,6 @@ const I18N = {
       body: "Răspunsurile tale influențează direct ce construim în continuare — și ce nu.",
       button: "Completează sondajul",
       sub: "Vrei acces timpuriu? Lasă adresa de e-mail la finalul sondajului — este singurul mod în care o colectăm."
-    },
-    faq: {
-      title: "Întrebări frecvente",
-      items: [
-        { q: "SecondSight este disponibil pentru descărcare acum?", a: "Nu încă public — suntem în beta privată. Completează sondajul și lasă adresa de e-mail dacă vrei o invitație." },
-        { q: "Ce telefoane sunt suportate?", a: "iOS și Android. Telefoanele mai vechi sunt exact ideea — dacă a stat într-un sertar, e un candidat bun." },
-        { q: "Unde ajunge video-ul meu?", a: "Video-ul este transmis peer-to-peer între telefonul-cameră și persoana cu care distribui linkul. Serverul nostru releu ajută doar cele două dispozitive să se găsească — nu stochează și nu are acces la video." },
-        { q: "Ce este deja construit față de ce este planificat?", a: "Vezi secțiunile „Ce este funcțional acum” și „Urmează” de mai sus — suntem intenționat transparenți în privința asta, fiindcă încă validăm ce să construim în continuare." }
-      ]
     },
     footer: { text: "Întrebări? Scrie-ne — detalii de contact la cerere." }
   }
@@ -346,36 +249,6 @@ function render(lang) {
 
   document.querySelectorAll("[data-survey-link]").forEach(el => {
     el.href = SURVEY_LINKS[lang];
-  });
-
-  const cardsEl = document.getElementById("today-cards");
-  cardsEl.innerHTML = "";
-  dict.today.cards.forEach(c => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `<h3></h3><p></p>`;
-    div.querySelector("h3").textContent = c.title;
-    div.querySelector("p").textContent = c.body;
-    cardsEl.appendChild(div);
-  });
-
-  const roadmapEl = document.getElementById("roadmap-list");
-  roadmapEl.innerHTML = "";
-  dict.roadmap.items.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    roadmapEl.appendChild(li);
-  });
-
-  const faqEl = document.getElementById("faq-list");
-  faqEl.innerHTML = "";
-  dict.faq.items.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "faq-item";
-    div.innerHTML = `<h3></h3><p></p>`;
-    div.querySelector("h3").textContent = item.q;
-    div.querySelector("p").textContent = item.a;
-    faqEl.appendChild(div);
   });
 
   document.querySelectorAll(".lang-toggle button").forEach(btn => {
