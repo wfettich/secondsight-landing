@@ -80,7 +80,17 @@
     box-shadow: 0 0 0 rgba(94,234,212,0);
   }
   .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(94,234,212,0.25); }
+  button.btn { border: none; cursor: pointer; font-family: inherit; }
   .btn-sub { color: var(--text-dim); font-size: 0.88rem; margin-top: 12px; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 14px; max-width: 460px; margin-top: 8px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 0.85rem; color: var(--text-dim); font-weight: 600; }
+  .field input, .field textarea {
+    background: var(--bg-elev); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; color: var(--text); font: inherit; resize: vertical;
+  }
+  .field input:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .step { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
@@ -169,6 +179,29 @@
   </div>
 </section>
 
+<section id="contact">
+  <div class="wrap">
+    <h2 data-i18n="contact.title"></h2>
+    <p class="section-lead" data-i18n="contact.lead"></p>
+    <form id="contact-form" class="contact-form">
+      <div class="field">
+        <label for="contact-name" data-i18n="contact.nameLabel"></label>
+        <input type="text" id="contact-name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="contact-email" data-i18n="contact.emailLabel"></label>
+        <input type="email" id="contact-email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="contact-message" data-i18n="contact.messageLabel"></label>
+        <textarea id="contact-message" name="message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn" data-i18n="contact.send"></button>
+      <p class="btn-sub" data-i18n="contact.note"></p>
+    </form>
+  </div>
+</section>
+
 <footer class="site">
   <div class="wrap">
     <span data-i18n="footer.text"></span>
@@ -186,7 +219,7 @@ const I18N = {
     hero: {
       badge: "Beta · Private testing",
       title: "Turn an old phone into a live security camera.",
-      lead: "Watch it from any browser — no app needed to view, no cloud storing your video. Currently in private beta, and we're building it based on real feedback.",
+      lead: "Watch from any browser today — an app viewer is on the way too. Video is stored locally on the camera by default, with optional cloud backup (your own storage, or ours) if you ever want it. Currently in private beta, and we're building it based on real feedback.",
       cta: "Take the 5-minute survey"
     },
     how: {
@@ -206,33 +239,51 @@ const I18N = {
       button: "Take the survey",
       sub: "Want early access? Leave your email at the end of the survey — that's the only way we collect it."
     },
-    footer: { text: "Questions? Reach out — contact details on request." }
+    contact: {
+      title: "Get in touch",
+      lead: "Have a question, feedback, or something else on your mind? Send us a note.",
+      nameLabel: "Name",
+      emailLabel: "Email",
+      messageLabel: "Message",
+      send: "Send",
+      note: "Opens your email app with this pre-filled."
+    },
+    footer: { text: "© SecondSight" }
   },
   ro: {
     hero: {
       badge: "Beta · Testare privată",
       title: "Transformă un telefon vechi într-o cameră de supraveghere live.",
-      lead: "Vizionează din orice browser — fără nicio aplicație necesară pentru a viziona, fără stocare în cloud a video-ului tău. În prezent în beta privată, iar dezvoltarea se bazează pe feedback real.",
+      lead: "Vizionează din orice browser chiar acum — urmează și un viewer în aplicație. Video-ul este stocat local pe cameră în mod implicit, cu backup opțional în cloud (propriul tău spațiu de stocare, sau al nostru) dacă vrei vreodată asta. În prezent în beta privată, iar dezvoltarea se bazează pe feedback real.",
       cta: "Completează sondajul de 5 minute"
     },
     how: {
       title: "Cum funcționează",
       lead: "SecondSight rulează pe telefonul pe care îl ai deja într-un sertar.",
-      step1: { title: "Instalează pe un telefon vechi", body: "Aplicația cameră SecondSight rulează pe iOS sau Android — orice dispozitiv liber devine cameră." },
+      step1: { title: "Instalează pe un telefon vechi", body: "Aplicația cameră SecondSight rulează pe iOS sau Android — orice dispozitiv nefolosit devine cameră." },
       step2: { title: "Transmite live, peer-to-peer", body: "Video-ul este trimis direct (WebRTC) către persoana cu care distribui linkul — serverul nostru ajută doar cele două dispozitive să se conecteze." },
       step3: { title: "Vizionează din orice browser", body: "Deschide linkul privat pe un laptop sau alt telefon. Nu e nevoie de nicio aplicație separată pentru vizionare." }
     },
     why: {
       title: "De ce întrebăm",
-      body: "SecondSight este înainte de lansare. Înainte să continuăm dezvoltarea, vrem să auzim părerea unor oameni care au folosit cu adevărat aplicații vechi de supraveghere — ce a funcționat, ce nu, și ce te-ar face să folosești asta. Sondajul durează aproximativ 5 minute, iar toate întrebările, cu excepția e-mailului pentru invitația beta, sunt opționale."
+      body: "SecondSight este înainte de lansare. Înainte să continuăm dezvoltarea, vrem să auzim părerile celor care au folosit aplicații de supraveghere — ce a funcționat, ce nu, și de ce ai folosi asta. Sondajul durează aproximativ 5 minute, iar toate întrebările, cu excepția e-mailului pentru invitația beta, sunt opționale."
     },
     cta: {
       title: "Spune-ne de ce ai nevoie",
       body: "Răspunsurile tale influențează direct ce construim în continuare — și ce nu.",
       button: "Completează sondajul",
-      sub: "Vrei acces timpuriu? Lasă adresa de e-mail la finalul sondajului — este singurul mod în care o colectăm."
+      sub: ""
     },
-    footer: { text: "Întrebări? Scrie-ne — detalii de contact la cerere." }
+    contact: {
+      title: "Contactează-ne",
+      lead: "Ai o întrebare, un feedback sau altceva pe suflet? Trimite-ne un mesaj.",
+      nameLabel: "Nume",
+      emailLabel: "E-mail",
+      messageLabel: "Mesaj",
+      send: "Trimite",
+      note: "Se deschide aplicația ta de e-mail cu mesajul completat."
+    },
+    footer: { text: "© SecondSight" }
   }
 };
 
@@ -244,7 +295,10 @@ function render(lang) {
     const path = el.getAttribute("data-i18n").split(".");
     let val = dict;
     for (const p of path) val = val && val[p];
-    if (typeof val === "string") el.textContent = val;
+    if (typeof val === "string") {
+      el.textContent = val;
+      el.hidden = val === "";
+    }
   });
 
   document.querySelectorAll("[data-survey-link]").forEach(el => {
@@ -270,6 +324,17 @@ document.querySelectorAll(".lang-toggle button").forEach(btn => {
     try { localStorage.setItem("ss-lang", lang); } catch (e) {}
     render(lang);
   });
+});
+
+const CONTACT_EMAIL = "wfettich+SecondSight@gmail.com";
+document.getElementById("contact-form").addEventListener("submit", e => {
+  e.preventDefault();
+  const name = document.getElementById("contact-name").value.trim();
+  const email = document.getElementById("contact-email").value.trim();
+  const message = document.getElementById("contact-message").value.trim();
+  const subject = encodeURIComponent(`SecondSight contact from ${name}`);
+  const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
 });
 
 render(detectInitialLang());
