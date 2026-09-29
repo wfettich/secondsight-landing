@@ -69,7 +69,8 @@
     padding: 5px 12px; border-radius: 999px; margin-bottom: 18px;
   }
   h1 { font-size: clamp(2rem, 5vw, 2.9rem); line-height: 1.12; margin: 0 0 18px; letter-spacing: -0.02em; }
-  .hero p.lead { font-size: 1.15rem; color: var(--text-dim); max-width: 640px; margin: 0 0 30px; }
+  .hero p.tagline { font-size: 1.15rem; color: var(--text); font-weight: 600; max-width: 640px; margin: 0 0 12px; }
+  .hero p.lead { font-size: 1.02rem; color: var(--text-dim); max-width: 640px; margin: 0 0 30px; }
   h2 { font-size: clamp(1.5rem, 3.5vw, 1.9rem); margin: 0 0 10px; letter-spacing: -0.01em; }
   .section-lead { color: var(--text-dim); max-width: 640px; margin: 0 0 32px; }
 
@@ -132,6 +133,7 @@
   <div class="wrap">
     <span class="badge" data-i18n="hero.badge"></span>
     <h1 data-i18n="hero.title"></h1>
+    <p class="tagline" data-i18n="hero.tagline"></p>
     <p class="lead" data-i18n="hero.lead"></p>
     <a class="btn" data-i18n="hero.cta" data-survey-link href="#" target="_blank" rel="noopener"></a>
   </div>
@@ -219,7 +221,8 @@ const I18N = {
     hero: {
       badge: "Beta · Private testing",
       title: "Turn an old phone into a live security camera.",
-      lead: "Watch from any browser today — an app viewer is on the way too. Video is stored locally on the camera by default, with optional cloud backup (your own storage, or ours) if you ever want it. Currently in private beta, and we're building it based on real feedback.",
+      tagline: "SecondSight is a mobile app that allows you to use an old phone as a security camera. Ease of use and privacy are our main objectives.",
+      lead: "Watch from any browser today. An app viewer is on the way too. Video is stored locally on the camera by default. Cloud backup in future releases. Currently in private beta, and we're building it based on real feedback.",
       cta: "Take the 5-minute survey"
     },
     how: {
@@ -254,7 +257,8 @@ const I18N = {
     hero: {
       badge: "Beta · Testare privată",
       title: "Transformă un telefon vechi într-o cameră de supraveghere live.",
-      lead: "Vizionează din orice browser chiar acum — urmează și un viewer în aplicație. Video-ul este stocat local pe cameră în mod implicit, cu backup opțional în cloud (propriul tău spațiu de stocare, sau al nostru) dacă vrei vreodată asta. În prezent în beta privată, iar dezvoltarea se bazează pe feedback real.",
+      tagline: "SecondSight este o aplicație mobilă care îți permite să folosești un telefon vechi ca cameră de supraveghere. Ușurința de utilizare și confidențialitatea sunt obiectivele noastre principale.",
+      lead: "Vizionează acum din browser. Va urma și un viewer în aplicație. Video-ul este stocat local pe cameră în mod implicit. Va urma backup opțional în cloud. În prezent în beta privată, iar dezvoltarea se bazează pe feedback real.",
       cta: "Completează sondajul de 5 minute"
     },
     how: {
@@ -266,7 +270,7 @@ const I18N = {
     },
     why: {
       title: "De ce întrebăm",
-      body: "SecondSight este înainte de lansare. Înainte să continuăm dezvoltarea, vrem să auzim părerile celor care au folosit aplicații de supraveghere — ce a funcționat, ce nu, și de ce ai folosi asta. Sondajul durează aproximativ 5 minute, iar toate întrebările, cu excepția e-mailului pentru invitația beta, sunt opționale."
+      body: "SecondSight este înainte de lansare. Înainte să continuăm dezvoltarea, vrem să auzim părerile celor care au folosit aplicații de supraveghere — ce a funcționat, ce nu, și de ce ar folosi asta. Sondajul durează aproximativ 5 minute, iar toate întrebările, cu excepția e-mailului pentru invitația beta, sunt opționale."
     },
     cta: {
       title: "Spune-ne de ce ai nevoie",
