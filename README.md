@@ -32,4 +32,4 @@ Not wired up yet. Sign up for [Plausible](https://plausible.io) or [GoatCounter]
 
 ## Deployment
 
-Intended to be hosted via GitHub Pages from `main` on a dedicated repo (not yet pushed — this is a local git repo pending your go-ahead to create the remote).
+Hosted via GitHub Pages from `main` on [github.com/wfettich/secondsight-landing](https://github.com/wfettich/secondsight-landing), live at https://wfettich.github.io/secondsight-landing/. Pushing to `main` redeploys automatically.
