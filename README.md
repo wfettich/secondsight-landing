@@ -24,7 +24,7 @@ The "Take the survey" CTA links out to the existing bilingual Google Form (no em
 - EN: https://docs.google.com/forms/d/1SBcMhcV90_8P2jntN9Fs37edHEshFhHHnDwxC5ZY90M/viewform
 - RO: https://docs.google.com/forms/d/172B3AGhx25FZPJuLq6e_XJKgx-G5WZOjOlhvycqdevU/viewform
 
-Email is collected only inside the Google Form's own optional beta-invite question — there is no separate signup form or backend on this page.
+Name, email and platform are collected only inside the Google Form's own beta-invite page, which appears (and is required) only when the respondent answers yes to testing the app — there is no separate signup form or backend on this page.
 
 ## Analytics
 
