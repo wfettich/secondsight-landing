@@ -99,10 +99,24 @@
   }
   .cta-box p { color: var(--text-dim); max-width: 520px; margin: 0 auto 22px; }
 
+
+  .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .status-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .status-card h3 { margin: 0 0 14px; font-size: 1.05rem; }
+  .status-card ul { list-style: none; margin: 0; padding: 0; }
+  .status-card li { position: relative; padding: 0 0 10px 28px; color: var(--text-dim); font-size: 0.95rem; }
+  .status-card li:last-child { padding-bottom: 0; }
+  .status-card li::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+  .status-card.now li::before { content: "\2713"; color: var(--accent); }
+  .status-card.next li::before { content: "\2192"; color: var(--warn-text); }
+  .status-card.now h3 { color: var(--accent); }
+  .status-card.next h3 { color: var(--warn-text); }
+  .status-more { color: var(--text-dim); font-size: 0.92rem; margin: 18px 0 0; }
+
   footer.site { padding: 34px 0 50px; color: var(--text-dim); font-size: 0.88rem; }
 
   @media (max-width: 700px) {
-    .steps { grid-template-columns: 1fr; }
+    .steps, .status-grid { grid-template-columns: 1fr; }
     section { padding: 44px 0; }
   }
 </style>
@@ -153,6 +167,38 @@
   </div>
 </section>
 
+<section id="status">
+  <div class="wrap">
+    <h2 data-i18n="status.title"></h2>
+    <p class="section-lead" data-i18n="status.lead"></p>
+    <div class="status-grid">
+      <div class="status-card now">
+        <h3 data-i18n="status.now.title"></h3>
+        <ul>
+          <li data-i18n="status.now.i1"></li>
+          <li data-i18n="status.now.i2"></li>
+          <li data-i18n="status.now.i3"></li>
+          <li data-i18n="status.now.i4"></li>
+          <li data-i18n="status.now.i5"></li>
+        </ul>
+      </div>
+      <div class="status-card next">
+        <h3 data-i18n="status.next.title"></h3>
+        <ul>
+          <li data-i18n="status.next.i1"></li>
+          <li data-i18n="status.next.i2"></li>
+          <li data-i18n="status.next.i3"></li>
+          <li data-i18n="status.next.i4"></li>
+          <li data-i18n="status.next.i5"></li>
+          <li data-i18n="status.next.i6"></li>
+          <li data-i18n="status.next.i7"></li>
+        </ul>
+      </div>
+    </div>
+    <p class="status-more" data-i18n="status.more"></p>
+  </div>
+</section>
+
 <section id="why">
   <div class="wrap">
     <h2 data-i18n="why.title"></h2>
@@ -199,6 +245,29 @@ const I18N = {
       step2: { title: "It streams live, peer-to-peer", body: "Video is sent directly (WebRTC) to whoever you share the link with — our server only helps the two devices connect." },
       step3: { title: "Watch from any browser", body: "Open the private link on a laptop or another phone. No separate viewer app to install." }
     },
+    status: {
+      title: "What works today, and what's next",
+      lead: "An honest snapshot of where SecondSight is right now.",
+      now: {
+        title: "Available now",
+        i1: "Live streaming and recording on the device",
+        i2: "Watch your recordings on the device",
+        i3: "Motion detection, with recording triggered by motion",
+        i4: "No-config access from outside your home, over cellular",
+        i5: "Live viewing in any browser"
+      },
+      next: {
+        title: "Planned",
+        i1: "Viewer mode in the app, so you can receive notifications",
+        i2: "App translations: Romanian, Polish and more",
+        i3: "Link your own cloud drive (Google Drive, OneDrive, etc.) for archive storage",
+        i4: "Access control: only you and the people you share with can open the stream",
+        i5: "2-way audio",
+        i6: "Multi-camera view: watch several cameras from the same app",
+        i7: "Low-light vision"
+      },
+      more: "…and many more. You're helping us shape the next features, so tell us what matters most in the survey below."
+    },
     why: {
       title: "Why we're asking",
       body: "SecondSight is work in progress. Before we build further, we want to hear from people who've actually dealt with surveillance-camera apps — what worked, what didn't, and what would make you use this. The survey takes about 5 minutes, and every question except the beta-invite email is optional."
@@ -225,6 +294,29 @@ const I18N = {
       step1: { title: "Instalează pe un telefon vechi", body: "Aplicația cameră SecondSight rulează pe iOS sau Android — orice dispozitiv nefolosit devine cameră." },
       step2: { title: "Transmite live, peer-to-peer", body: "Video-ul este trimis direct (WebRTC) către persoana cu care distribui linkul — serverul nostru ajută doar cele două dispozitive să se conecteze." },
       step3: { title: "Vizionează din orice browser", body: "Deschide linkul privat pe un laptop sau alt telefon. Nu e nevoie de nicio aplicație separată pentru vizionare." }
+    },
+    status: {
+      title: "Ce funcționează azi și ce urmează",
+      lead: "Un instantaneu sincer al stadiului actual al SecondSight.",
+      now: {
+        title: "Disponibil acum",
+        i1: "Transmisie live și înregistrare pe dispozitiv",
+        i2: "Vizionarea înregistrărilor pe dispozitiv",
+        i3: "Detectare de mișcare, cu înregistrare declanșată de mișcare",
+        i4: "Acces din exterior fără configurare, prin rețea celulară",
+        i5: "Vizionare live din orice browser"
+      },
+      next: {
+        title: "Planificat",
+        i1: "Mod viewer în aplicație, pentru a primi notificări",
+        i2: "Traduceri ale aplicației: română, poloneză și altele",
+        i3: "Conectează-ți propriul cloud (Google Drive, OneDrive etc.) pentru stocarea arhivei",
+        i4: "Securitate: doar tu și persoanele cu care partajezi puteți accesa transmisia",
+        i5: "Audio bidirecțional",
+        i6: "Vizualizare multi-cameră: urmărești mai multe camere din aceeași aplicație",
+        i7: "Vedere pe lumină slabă"
+      },
+      more: "…și multe altele. Ne ajuți să conturăm următoarele funcții, așa că spune-ne în sondajul de mai jos ce contează cel mai mult pentru tine."
     },
     why: {
       title: "De ce întrebăm",
