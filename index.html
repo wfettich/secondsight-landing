@@ -355,7 +355,22 @@ function render(lang) {
   });
 }
 
+function langFromUrl() {
+  const l = (new URLSearchParams(location.search).get("lang") || "").toLowerCase();
+  return l === "en" || l === "ro" ? l : null;
+}
+
+function setUrlLang(lang) {
+  try {
+    const url = new URL(location.href);
+    url.searchParams.set("lang", lang);
+    history.replaceState(null, "", url);
+  } catch (e) {}
+}
+
 function detectInitialLang() {
+  const fromUrl = langFromUrl();
+  if (fromUrl) return fromUrl;
   try {
     const saved = localStorage.getItem("ss-lang");
     if (saved === "en" || saved === "ro") return saved;
@@ -367,11 +382,14 @@ document.querySelectorAll(".lang-toggle button").forEach(btn => {
   btn.addEventListener("click", () => {
     const lang = btn.dataset.lang;
     try { localStorage.setItem("ss-lang", lang); } catch (e) {}
+    setUrlLang(lang);
     render(lang);
   });
 });
 
-render(detectInitialLang());
+const initialLang = detectInitialLang();
+if (!langFromUrl()) setUrlLang(initialLang);
+render(initialLang);
 </script>
 
 </body>

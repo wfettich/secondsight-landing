@@ -15,7 +15,7 @@ python3 -m http.server 8000
 
 ## Language
 
-Language is auto-detected from `navigator.language` (Romanian if it starts with `ro`, otherwise English), overridable via the EN/RO toggle in the header. The choice is remembered per-browser in `localStorage`.
+Language is set by the `?lang=en` / `?lang=ro` URL parameter (shareable, one URL per language). Without it, it falls back to the choice saved in `localStorage`, then `navigator.language` (Romanian if it starts with `ro`, otherwise English). The EN/RO toggle updates the URL and the saved choice.
 
 ## Survey links
 
