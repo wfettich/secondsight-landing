@@ -85,7 +85,6 @@
   .dl-item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
   .dl-item[hidden] { display: none; }
   .dl-item .qr { width: 164px; height: 164px; background: #fff; padding: 8px; border-radius: 14px; }
-  .dl-item .qr-cap { margin: 0; font-size: 0.85rem; color: var(--text-dim); text-align: center; max-width: 200px; }
   .dl-row + .btn-sub { margin-top: 26px; }
   .btn-sub { color: var(--text-dim); font-size: 0.88rem; margin-top: 12px; }
 
@@ -162,13 +161,11 @@
         <div class="dl-item" id="dl-android-item">
           <a class="btn" id="dl-android" data-i18n="signup.dlAndroid" href="https://appdistribution.firebase.dev/i/1daffc3b9bc8cc22" target="_blank" rel="noopener"></a>
           <img class="qr" src="qr-android.svg" width="164" height="164" alt="QR code: download SecondSight for Android">
-          <p class="qr-cap" data-i18n="signup.qrCaption"></p>
         </div>
         <!-- TestFlight public link. Remove the hidden attribute once Apple has approved build 1.0 (13) for external testing, otherwise testers see "not accepting testers". Add ?preview=1 to the page address to see it before that. -->
         <div class="dl-item" id="dl-ios-item" hidden>
           <a class="btn" id="dl-ios" data-i18n="signup.dlIos" href="https://testflight.apple.com/join/KQEuW31z" target="_blank" rel="noopener"></a>
           <img class="qr" src="qr-ios.svg" width="164" height="164" alt="QR code: download SecondSight for iPhone and iPad with TestFlight">
-          <p class="qr-cap" data-i18n="signup.qrCaption"></p>
         </div>
       </div>
     </div>
@@ -275,7 +272,6 @@ const I18N = {
       body: "Install it straight away with the button for your phone, or scan the QR code with your phone's camera.",
       dlAndroid: "Download for Android",
       dlIos: "Download for iOS",
-      qrCaption: "Or scan with your phone",
     },
     how: {
       title: "How it works",
@@ -332,7 +328,6 @@ const I18N = {
       body: "Instaleaz-o imediat cu butonul pentru telefonul tău sau scanează codul QR cu camera telefonului.",
       dlAndroid: "Descarcă pentru Android",
       dlIos: "Descarcă pentru iOS",
-      qrCaption: "Sau scanează cu telefonul",
     },
     how: {
       title: "Cum funcționează",
