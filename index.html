@@ -81,6 +81,8 @@
     box-shadow: 0 0 0 rgba(94,234,212,0);
   }
   .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(94,234,212,0.25); }
+  .dl-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 4px; }
+  .dl-row [hidden] { display: none; }
   .btn-sub { color: var(--text-dim); font-size: 0.88rem; margin-top: 12px; }
 
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -165,6 +167,12 @@
     <div class="cta-box">
       <h2 data-i18n="signup.title"></h2>
       <p data-i18n="signup.body"></p>
+      <div class="dl-row">
+        <a class="btn" id="dl-android" data-i18n="signup.dlAndroid" href="https://appdistribution.firebase.dev/i/658f2ddcc925db7f" target="_blank" rel="noopener"></a>
+        <!-- TODO: set href to the public TestFlight link, then remove the hidden attribute -->
+        <a class="btn" id="dl-ios" data-i18n="signup.dlIos" href="#" target="_blank" rel="noopener" hidden></a>
+      </div>
+      <p class="btn-sub" data-i18n="signup.or"></p>
       <form id="signup-form" class="signup-form" novalidate>
         <div class="field">
           <label for="su-email" data-i18n="signup.emailLabel"></label>
@@ -288,7 +296,10 @@ const I18N = {
     },
     signup: {
       title: "Get the app",
-      body: "Leave your email and pick your platform. We'll send you an invite to download SecondSight.",
+      body: "Install it straight away with the button for your phone, or leave your email and we'll send you an invite.",
+      dlAndroid: "Download for Android",
+      dlIos: "Download for iPhone / iPad (TestFlight)",
+      or: "Prefer an invite by email? Leave your details below.",
       emailLabel: "Email",
       emailPh: "you@example.com",
       platformLabel: "Your phone",
@@ -356,7 +367,10 @@ const I18N = {
     },
     signup: {
       title: "Ia aplicația",
-      body: "Lasă-ne e-mailul și alege platforma. Îți trimitem o invitație ca să descarci SecondSight.",
+      body: "Instaleaz-o imediat cu butonul pentru telefonul tău sau lasă-ne e-mailul și îți trimitem o invitație.",
+      dlAndroid: "Descarcă pentru Android",
+      dlIos: "Descarcă pentru iPhone / iPad (TestFlight)",
+      or: "Preferi o invitație pe e-mail? Completează datele de mai jos.",
       emailLabel: "E-mail",
       emailPh: "tu@exemplu.ro",
       platformLabel: "Telefonul tău",
