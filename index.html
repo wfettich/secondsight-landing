@@ -9,7 +9,7 @@
   TODO analytics: sign up for Plausible (plausible.io) or GoatCounter (goatcounter.com)
   yourself, then paste the tracking snippet here. Neither can be set up on your behalf.
   Suggested events to track: pageview (default), a "survey-click" event on the elements
-  with [data-survey-link], and a "signup-submit" event from the #signup-form handler.
+  with [data-survey-link].
 -->
 <style>
   :root {
@@ -106,21 +106,9 @@
   .cta-box p { color: var(--text-dim); max-width: 520px; margin: 0 auto 22px; }
 
 
-  .signup-form { max-width: 460px; margin: 0 auto; text-align: left; }
-  .signup-form label { display: block; font-size: 0.88rem; font-weight: 600; margin: 0 0 6px; }
-  .signup-form .field { margin-bottom: 16px; }
-  .signup-form input[type="email"], .signup-form select {
     width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border);
     border-radius: 10px; padding: 12px 14px; font: inherit; font-size: 1rem;
   }
-  .signup-form input:focus, .signup-form select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-  .signup-form button.btn { border: none; cursor: pointer; width: 100%; font-family: inherit; }
-  .signup-form button.btn:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
-  .signup-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-  .signup-form .consent { color: var(--text-dim); font-size: 0.82rem; margin: 14px 0 0; text-align: center; }
-  .form-msg { margin-top: 14px; padding: 12px 14px; border-radius: 10px; font-size: 0.92rem; text-align: center; }
-  .form-msg.ok { background: var(--accent-dim); color: var(--text); }
-  .form-msg.err { background: var(--warn-bg); border: 1px solid var(--warn-border); color: var(--warn-text); }
   .survey-box { padding: 28px; }
 
   .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
@@ -184,28 +172,23 @@
           <p class="qr-cap" data-i18n="signup.qrCaption"></p>
         </div>
       </div>
-      <p class="btn-sub" data-i18n="signup.or"></p>
-      <form id="signup-form" class="signup-form" novalidate>
-        <div class="field">
-          <label for="su-email" data-i18n="signup.emailLabel"></label>
-          <input id="su-email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" data-i18n-ph="signup.emailPh">
-        </div>
-        <div class="field">
-          <label for="su-platform" data-i18n="signup.platformLabel"></label>
-          <select id="su-platform" name="platform" required>
-            <option value="" data-i18n="signup.platformPick"></option>
-            <option value="ios" data-i18n="signup.ios"></option>
-            <option value="android" data-i18n="signup.android"></option>
-          </select>
-        </div>
-        <div class="hp" aria-hidden="true">
-          <label for="su-website">Website</label>
-          <input id="su-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-        <button class="btn" type="submit" id="su-submit" data-i18n="signup.button"></button>
-        <p class="consent" data-i18n="signup.consent"></p>
-        <div id="su-msg" class="form-msg" role="status" aria-live="polite" hidden></div>
-      </form>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <h2 data-i18n="why.title"></h2>
+    <p class="section-lead" data-i18n="why.body"></p>
+  </div>
+</section>
+
+<section id="survey">
+  <div class="wrap">
+    <div class="cta-box survey-box">
+      <h2 data-i18n="cta.title"></h2>
+      <p data-i18n="cta.body"></p>
+      <a class="btn" data-i18n="cta.button" data-survey-link href="#" target="_blank" rel="noopener"></a>
     </div>
   </div>
 </section>
@@ -268,23 +251,6 @@
   </div>
 </section>
 
-<section id="why">
-  <div class="wrap">
-    <h2 data-i18n="why.title"></h2>
-    <p class="section-lead" data-i18n="why.body"></p>
-  </div>
-</section>
-
-<section id="survey">
-  <div class="wrap">
-    <div class="cta-box survey-box">
-      <h2 data-i18n="cta.title"></h2>
-      <p data-i18n="cta.body"></p>
-      <a class="btn" data-i18n="cta.button" data-survey-link href="#" target="_blank" rel="noopener"></a>
-    </div>
-  </div>
-</section>
-
 <footer class="site">
   <div class="wrap">
     <span data-i18n="footer.text"></span>
@@ -308,24 +274,10 @@ const I18N = {
     },
     signup: {
       title: "Get the app",
-      body: "Install it straight away with the button for your phone, or leave your email and we'll send you an invite.",
+      body: "Install it straight away with the button for your phone, or scan the QR code with your phone's camera.",
       dlAndroid: "Download for Android",
       dlIos: "Download for iPhone / iPad (TestFlight)",
-      or: "Prefer an invite by email? Leave your details below.",
       qrCaption: "Or scan with your phone",
-      emailLabel: "Email",
-      emailPh: "you@example.com",
-      platformLabel: "Your phone",
-      platformPick: "Choose your platform",
-      ios: "iPhone / iPad",
-      android: "Android",
-      button: "Get the app",
-      consent: "We'll only use your email to send you the app invite and important updates; no spam.",
-      ok: "Thanks! We'll send the invite to your email soon.",
-      errEmail: "Please enter a valid email address.",
-      errPlatform: "Please choose your platform.",
-      errNet: "Something went wrong. Please try again in a moment.",
-      sending: "Sending…"
     },
     how: {
       title: "How it works",
@@ -380,24 +332,10 @@ const I18N = {
     },
     signup: {
       title: "Ia aplicația",
-      body: "Instaleaz-o imediat cu butonul pentru telefonul tău sau lasă-ne e-mailul și îți trimitem o invitație.",
+      body: "Instaleaz-o imediat cu butonul pentru telefonul tău sau scanează codul QR cu camera telefonului.",
       dlAndroid: "Descarcă pentru Android",
       dlIos: "Descarcă pentru iPhone / iPad (TestFlight)",
-      or: "Preferi o invitație pe e-mail? Completează datele de mai jos.",
       qrCaption: "Sau scanează cu telefonul",
-      emailLabel: "E-mail",
-      emailPh: "tu@exemplu.ro",
-      platformLabel: "Telefonul tău",
-      platformPick: "Alege platforma",
-      ios: "iPhone / iPad",
-      android: "Android",
-      button: "Ia aplicația",
-      consent: "Îți folosim e-mailul doar ca să-ți trimitem invitația la aplicație și actualizări importante; fără spam.",
-      ok: "Mulțumim! Îți trimitem în curând invitația pe e-mail.",
-      errEmail: "Introdu o adresă de e-mail validă.",
-      errPlatform: "Alege platforma ta.",
-      errNet: "Ceva n-a mers. Încearcă din nou peste puțin timp.",
-      sending: "Se trimite…"
     },
     how: {
       title: "Cum funcționează",
@@ -507,69 +445,7 @@ document.querySelectorAll(".lang-toggle button").forEach(btn => {
   });
 });
 
-// ---- Beta signup: Firestore REST create (no SDK/backend). The web API key is public by
-// design; abuse is limited by the Firestore rules (create-only, strict schema) and by
-// restricting the key in Google Cloud console.
-const SIGNUP_ENDPOINT =
-  "https://firestore.googleapis.com/v1/projects/secondsight-29914/databases/(default)/documents/betaSignups" +
-  "?key=AIzaSyCQeEwolGw_qXI2Z8_QA1Ev-eUIJ6Vvd_k";
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 let currentLang = "en";
-
-(function setupSignup() {
-  const form = document.getElementById("signup-form");
-  const msg = document.getElementById("su-msg");
-  const btn = document.getElementById("su-submit");
-  const t = k => (I18N[currentLang].signup || {})[k] || "";
-  let sending = false;
-
-  function show(kind, text) {
-    msg.className = "form-msg " + kind;
-    msg.textContent = text;
-    msg.hidden = false;
-  }
-  function done(email) {
-    form.reset();
-    show("ok", t("ok"));
-  }
-
-  form.addEventListener("submit", async ev => {
-    ev.preventDefault();
-    if (sending) return;
-    const email = form.email.value.trim();
-    const platform = form.platform.value;
-    if (!EMAIL_RE.test(email) || email.length > 254) { show("err", t("errEmail")); return; }
-    if (platform !== "ios" && platform !== "android") { show("err", t("errPlatform")); return; }
-    // Honeypot: bots fill the hidden field. Pretend success, send nothing.
-    if (form.website.value) { done(email); return; }
-    // Same email+platform already sent from this browser: don't re-submit.
-    const key = email.toLowerCase() + "|" + platform;
-    try { if (localStorage.getItem("ss-signup") === key) { done(email); return; } } catch (e) {}
-
-    sending = true; btn.disabled = true;
-    const label = btn.textContent; btn.textContent = t("sending");
-    try {
-      const res = await fetch(SIGNUP_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fields: {
-          email: { stringValue: email },
-          platform: { stringValue: platform },
-          lang: { stringValue: currentLang },
-          createdAt: { timestampValue: new Date().toISOString() },
-          source: { stringValue: "landing" }
-        } })
-      });
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      try { localStorage.setItem("ss-signup", key); } catch (e) {}
-      done(email);
-    } catch (e) {
-      show("err", t("errNet"));
-    } finally {
-      sending = false; btn.disabled = false; btn.textContent = I18N[currentLang].signup.button;
-    }
-  });
-})();
 
 const initialLang = detectInitialLang();
 if (!langFromUrl()) setUrlLang(initialLang);
