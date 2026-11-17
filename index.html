@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SecondSight — Turn an old phone into a security camera</title>
-<meta name="description" content="SecondSight turns an old phone into a live-streaming security camera you can watch from any browser. Private beta — take our one-minute survey.">
+<meta name="description" content="SecondSight turns an old phone into a live-streaming security camera you can watch from any browser. Free early access: sign up with your email and get the app.">
 <!--
   TODO analytics: sign up for Plausible (plausible.io) or GoatCounter (goatcounter.com)
   yourself, then paste the tracking snippet here. Neither can be set up on your behalf.
-  Suggested events to track: pageview (default) + a custom "survey-click" event on the
-  elements with [data-survey-link], so you can see click-through rate to the form.
+  Suggested events to track: pageview (default), a "survey-click" event on the elements
+  with [data-survey-link], and a "signup-submit" event from the #signup-form handler.
 -->
 <style>
   :root {
@@ -100,6 +100,23 @@
   .cta-box p { color: var(--text-dim); max-width: 520px; margin: 0 auto 22px; }
 
 
+  .signup-form { max-width: 460px; margin: 0 auto; text-align: left; }
+  .signup-form label { display: block; font-size: 0.88rem; font-weight: 600; margin: 0 0 6px; }
+  .signup-form .field { margin-bottom: 16px; }
+  .signup-form input[type="email"], .signup-form select {
+    width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px; font: inherit; font-size: 1rem;
+  }
+  .signup-form input:focus, .signup-form select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .signup-form button.btn { border: none; cursor: pointer; width: 100%; font-family: inherit; }
+  .signup-form button.btn:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
+  .signup-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .signup-form .consent { color: var(--text-dim); font-size: 0.82rem; margin: 14px 0 0; text-align: center; }
+  .form-msg { margin-top: 14px; padding: 12px 14px; border-radius: 10px; font-size: 0.92rem; text-align: center; }
+  .form-msg.ok { background: var(--accent-dim); color: var(--text); }
+  .form-msg.err { background: var(--warn-bg); border: 1px solid var(--warn-border); color: var(--warn-text); }
+  .survey-box { padding: 28px; }
+
   .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
   .status-card { background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
   .status-card h3 { margin: 0 0 14px; font-size: 1.05rem; }
@@ -139,7 +156,37 @@
     <h1 data-i18n="hero.title"></h1>
     <p class="tagline" data-i18n="hero.tagline"></p>
     <p class="lead" data-i18n="hero.lead"></p>
-    <a class="btn" data-i18n="hero.cta" data-survey-link href="#" target="_blank" rel="noopener"></a>
+    <a class="btn" data-i18n="hero.cta" href="#signup"></a>
+  </div>
+</section>
+
+<section id="signup">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2 data-i18n="signup.title"></h2>
+      <p data-i18n="signup.body"></p>
+      <form id="signup-form" class="signup-form" novalidate>
+        <div class="field">
+          <label for="su-email" data-i18n="signup.emailLabel"></label>
+          <input id="su-email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" data-i18n-ph="signup.emailPh">
+        </div>
+        <div class="field">
+          <label for="su-platform" data-i18n="signup.platformLabel"></label>
+          <select id="su-platform" name="platform" required>
+            <option value="" data-i18n="signup.platformPick"></option>
+            <option value="ios" data-i18n="signup.ios"></option>
+            <option value="android" data-i18n="signup.android"></option>
+          </select>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="su-website">Website</label>
+          <input id="su-website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <button class="btn" type="submit" id="su-submit" data-i18n="signup.button"></button>
+        <p class="consent" data-i18n="signup.consent"></p>
+        <div id="su-msg" class="form-msg" role="status" aria-live="polite" hidden></div>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -208,11 +255,10 @@
 
 <section id="survey">
   <div class="wrap">
-    <div class="cta-box">
+    <div class="cta-box survey-box">
       <h2 data-i18n="cta.title"></h2>
       <p data-i18n="cta.body"></p>
       <a class="btn" data-i18n="cta.button" data-survey-link href="#" target="_blank" rel="noopener"></a>
-      <div class="btn-sub" data-i18n="cta.sub"></div>
     </div>
   </div>
 </section>
@@ -232,11 +278,28 @@ const SURVEY_LINKS = {
 const I18N = {
   en: {
     hero: {
-      badge: "Beta · Private testing",
+      badge: "Beta · Early access",
       title: "Turn an old phone into a live security camera.",
       tagline: "SecondSight is a mobile app that allows you to use an old phone as a security camera. Ease of use and privacy are our main objectives.",
-      lead: "Watch from any browser today. An app viewer is on the way too. Video is stored locally on the camera by default. Cloud backup in future releases. Currently in private beta, and we're building it based on real feedback.",
-      cta: "Take the one-minute survey"
+      lead: "Watch from any browser today. An app viewer is on the way too. Video is stored locally on the camera by default. Cloud backup in future releases. Currently in beta, and we're building it based on real feedback.",
+      cta: "Get the app"
+    },
+    signup: {
+      title: "Get the app",
+      body: "Leave your email and pick your platform. We'll send you an invite to download SecondSight.",
+      emailLabel: "Email",
+      emailPh: "you@example.com",
+      platformLabel: "Your phone",
+      platformPick: "Choose your platform",
+      ios: "iPhone / iPad",
+      android: "Android",
+      button: "Get the app",
+      consent: "We'll only use your email to send you the app invite and important updates; no spam.",
+      ok: "Thanks! We'll send the invite to your email soon.",
+      errEmail: "Please enter a valid email address.",
+      errPlatform: "Please choose your platform.",
+      errNet: "Something went wrong. Please try again in a moment.",
+      sending: "Sending…"
     },
     how: {
       title: "How it works",
@@ -266,27 +329,43 @@ const I18N = {
         i6: "Multi-camera view: watch several cameras from the same app",
         i7: "Low-light vision"
       },
-      more: "…and many more. You're helping us shape the next features, so tell us what matters most in the survey below."
+      more: "…and many more. You're helping us shape the next features, so tell us what matters most in the optional survey below."
     },
     why: {
       title: "Why we're asking",
-      body: "SecondSight is work in progress. Before we build further, we want to hear from people who've actually dealt with surveillance-camera apps — what worked, what didn't, and what would make you use this. The survey takes about one minute and most questions are optional. If you'd like to join the beta, we'll ask for your name, email and device platform (iOS, Android or both) so we can send you build updates."
+      body: "SecondSight is work in progress. Before we build further, we want to hear from people who've actually dealt with surveillance-camera apps — what worked, what didn't, and what would make you use this. The survey is optional and takes about one minute, and most questions are optional too."
     },
     cta: {
-      title: "Tell us what you need",
-      body: "Your answers directly shape what gets built next — and what doesn't.",
-      button: "Take the survey",
-      sub: "Want early access? Answer yes to testing the app and leave your name, email and platform — that's the only way we collect them."
+      title: "Want to help us shape SecondSight?",
+      body: "Take the one-minute survey. It's optional, and your answers directly shape what gets built next — and what doesn't.",
+      button: "Take the survey"
     },
     footer: { text: "© SecondSight" }
   },
   ro: {
     hero: {
-      badge: "Beta · Testare privată",
+      badge: "Beta · Acces anticipat",
       title: "Transformă un telefon vechi într-o cameră de supraveghere live.",
       tagline: "SecondSight este o aplicație mobilă care îți permite să folosești un telefon vechi ca cameră de supraveghere. Ușurința de utilizare și confidențialitatea sunt obiectivele noastre principale.",
-      lead: "Vizionează acum din browser. Va urma și un viewer în aplicație. Video-ul este stocat local pe cameră în mod implicit. Va urma backup opțional în cloud. În prezent în beta privat, iar dezvoltarea se bazează pe feedback real.",
-      cta: "Completează sondajul de un minut"
+      lead: "Vizionează acum din browser. Va urma și un viewer în aplicație. Video-ul este stocat local pe cameră în mod implicit. Va urma backup opțional în cloud. În prezent în beta, iar dezvoltarea se bazează pe feedback real.",
+      cta: "Ia aplicația"
+    },
+    signup: {
+      title: "Ia aplicația",
+      body: "Lasă-ne e-mailul și alege platforma. Îți trimitem o invitație ca să descarci SecondSight.",
+      emailLabel: "E-mail",
+      emailPh: "tu@exemplu.ro",
+      platformLabel: "Telefonul tău",
+      platformPick: "Alege platforma",
+      ios: "iPhone / iPad",
+      android: "Android",
+      button: "Ia aplicația",
+      consent: "Îți folosim e-mailul doar ca să-ți trimitem invitația la aplicație și actualizări importante; fără spam.",
+      ok: "Mulțumim! Îți trimitem în curând invitația pe e-mail.",
+      errEmail: "Introdu o adresă de e-mail validă.",
+      errPlatform: "Alege platforma ta.",
+      errNet: "Ceva n-a mers. Încearcă din nou peste puțin timp.",
+      sending: "Se trimite…"
     },
     how: {
       title: "Cum funcționează",
@@ -316,23 +395,23 @@ const I18N = {
         i6: "Vizualizare multi-cameră: urmărești mai multe camere din aceeași aplicație",
         i7: "Vedere pe lumină slabă"
       },
-      more: "…și multe altele. Ne ajuți să conturăm următoarele funcții, așa că spune-ne în sondajul de mai jos ce contează cel mai mult pentru tine."
+      more: "…și multe altele. Ne ajuți să conturăm următoarele funcții, așa că spune-ne în sondajul opțional de mai jos ce contează cel mai mult pentru tine."
     },
     why: {
       title: "De ce întrebăm",
-      body: "SecondSight este încă în lucru. Înainte să continuăm dezvoltarea, vrem să auzim părerile celor care au folosit aplicații de supraveghere — ce a funcționat, ce nu, și de ce ar folosi asta. Sondajul durează aproximativ un minut, iar majoritatea întrebărilor sunt opționale. Dacă vrei să te alături beta-ului, îți vom cere numele, e-mailul și platforma dispozitivului (iOS, Android sau ambele) ca să-ți putem trimite actualizările versiunilor."
+      body: "SecondSight este încă în lucru. Înainte să continuăm dezvoltarea, vrem să auzim părerile celor care au folosit aplicații de supraveghere — ce a funcționat, ce nu, și de ce ar folosi asta. Sondajul este opțional, durează aproximativ un minut, iar majoritatea întrebărilor sunt opționale."
     },
     cta: {
-      title: "Spune-ne de ce ai nevoie",
-      body: "Răspunsurile tale influențează direct ce construim în continuare — și ce nu.",
-      button: "Completează sondajul",
-      sub: "Vrei acces anticipat? Răspunde „da” la testarea aplicației și lasă-ți numele, e-mailul și platforma — este singura modalitate prin care le colectăm."
+      title: "Vrei să ne ajuți să modelăm SecondSight?",
+      body: "Completează sondajul de un minut. Este opțional, iar răspunsurile tale influențează direct ce construim în continuare — și ce nu.",
+      button: "Completează sondajul"
     },
     footer: { text: "© SecondSight" }
   }
 };
 
 function render(lang) {
+  currentLang = lang;
   document.documentElement.lang = lang;
   const dict = I18N[lang];
 
@@ -344,6 +423,13 @@ function render(lang) {
       el.textContent = val;
       el.hidden = val === "";
     }
+  });
+
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+    const path = el.getAttribute("data-i18n-ph").split(".");
+    let val = dict;
+    for (const p of path) val = val && val[p];
+    if (typeof val === "string") el.placeholder = val;
   });
 
   document.querySelectorAll("[data-survey-link]").forEach(el => {
@@ -386,6 +472,70 @@ document.querySelectorAll(".lang-toggle button").forEach(btn => {
     render(lang);
   });
 });
+
+// ---- Beta signup: Firestore REST create (no SDK/backend). The web API key is public by
+// design; abuse is limited by the Firestore rules (create-only, strict schema) and by
+// restricting the key in Google Cloud console.
+const SIGNUP_ENDPOINT =
+  "https://firestore.googleapis.com/v1/projects/secondsight-29914/databases/(default)/documents/betaSignups" +
+  "?key=AIzaSyDO16dK9ocPtxRP63uYgQkj939gT3njps4";
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+let currentLang = "en";
+
+(function setupSignup() {
+  const form = document.getElementById("signup-form");
+  const msg = document.getElementById("su-msg");
+  const btn = document.getElementById("su-submit");
+  const t = k => (I18N[currentLang].signup || {})[k] || "";
+  let sending = false;
+
+  function show(kind, text) {
+    msg.className = "form-msg " + kind;
+    msg.textContent = text;
+    msg.hidden = false;
+  }
+  function done(email) {
+    form.reset();
+    show("ok", t("ok"));
+  }
+
+  form.addEventListener("submit", async ev => {
+    ev.preventDefault();
+    if (sending) return;
+    const email = form.email.value.trim();
+    const platform = form.platform.value;
+    if (!EMAIL_RE.test(email) || email.length > 254) { show("err", t("errEmail")); return; }
+    if (platform !== "ios" && platform !== "android") { show("err", t("errPlatform")); return; }
+    // Honeypot: bots fill the hidden field. Pretend success, send nothing.
+    if (form.website.value) { done(email); return; }
+    // Same email+platform already sent from this browser: don't re-submit.
+    const key = email.toLowerCase() + "|" + platform;
+    try { if (localStorage.getItem("ss-signup") === key) { done(email); return; } } catch (e) {}
+
+    sending = true; btn.disabled = true;
+    const label = btn.textContent; btn.textContent = t("sending");
+    try {
+      const res = await fetch(SIGNUP_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fields: {
+          email: { stringValue: email },
+          platform: { stringValue: platform },
+          lang: { stringValue: currentLang },
+          createdAt: { timestampValue: new Date().toISOString() },
+          source: { stringValue: "landing" }
+        } })
+      });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      try { localStorage.setItem("ss-signup", key); } catch (e) {}
+      done(email);
+    } catch (e) {
+      show("err", t("errNet"));
+    } finally {
+      sending = false; btn.disabled = false; btn.textContent = I18N[currentLang].signup.button;
+    }
+  });
+})();
 
 const initialLang = detectInitialLang();
 if (!langFromUrl()) setUrlLang(initialLang);
