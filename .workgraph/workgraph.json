@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-17T11:27:01.880Z",
+  "repo": "/Users/wf/Work/code/_surveillance cam/secondsight-landing",
+  "summary": {
+    "work_items": 0,
+    "memories": 0,
+    "failure_patterns": 0,
+    "evals": 0,
+    "graph_nodes": 1,
+    "graph_links": 0,
+    "milestones": 0
+  },
+  "nodes": [
+    {
+      "id": "repo",
+      "type": "repo",
+      "label": "secondsight-landing",
+      "title": "Repository: secondsight-landing",
+      "weight": 12
+    }
+  ],
+  "links": [],
+  "work_items": [],
+  "failure_patterns": [],
+  "evals": [],
+  "memories": [],
+  "journey": {
+    "schema_version": 1,
+    "generated_at": "2026-11-17T11:27:01.870Z",
+    "summary": {
+      "milestones": 0,
+      "work_items": 0,
+      "files": 0,
+      "checks": 0,
+      "traps": 0
+    },
+    "milestones": []
+  },
+  "memory_index": {
+    "model": "local-hash-embedding-v1",
+    "dimensions": 256,
+    "similarity_edges": []
+  }
+}

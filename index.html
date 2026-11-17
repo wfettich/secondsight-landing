@@ -227,6 +227,8 @@
           <li data-i18n="status.now.i3"></li>
           <li data-i18n="status.now.i4"></li>
           <li data-i18n="status.now.i5"></li>
+          <li data-i18n="status.now.i6"></li>
+          <li data-i18n="status.now.i7"></li>
         </ul>
       </div>
       <div class="status-card next">
@@ -281,7 +283,7 @@ const I18N = {
       badge: "Beta · Early access",
       title: "Turn an old phone into a live security camera.",
       tagline: "SecondSight is a mobile app that allows you to use an old phone as a security camera. Ease of use and privacy are our main objectives.",
-      lead: "Watch from any browser today. An app viewer is on the way too. Video is stored locally on the camera by default. Cloud backup in future releases. Currently in beta, and we're building it based on real feedback.",
+      lead: "Watch from any browser, or from the SecondSight app on another phone or tablet. Video is stored locally on the camera by default. Cloud backup in future releases. Currently in beta, and we're building it based on real feedback.",
       cta: "Get the app"
     },
     signup: {
@@ -306,7 +308,7 @@ const I18N = {
       lead: "SecondSight runs on the phone you already have sitting in a drawer.",
       step1: { title: "Install on an old phone", body: "The SecondSight camera app runs on iOS or Android — any spare device becomes the camera." },
       step2: { title: "It streams live, peer-to-peer", body: "Video is sent directly (WebRTC) to whoever you share the link with — our server only helps the two devices connect." },
-      step3: { title: "Watch from any browser", body: "Open the private link on a laptop or another phone. No separate viewer app to install." }
+      step3: { title: "Watch from any browser", body: "Open the private link in any browser on a laptop or another phone, or use the viewer mode of the SecondSight app." }
     },
     status: {
       title: "What works today, and what's next",
@@ -317,12 +319,14 @@ const I18N = {
         i2: "Watch your recordings on the device",
         i3: "Motion detection, with recording triggered by motion",
         i4: "No-config access from outside your home, over cellular",
-        i5: "Live viewing in any browser"
+        i5: "Live viewing in any browser",
+        i6: "Viewer mode in the app: pair cameras with a QR code and watch live, browse the recordings and see events from another phone",
+        i7: "App available in English and Romanian"
       },
       next: {
         title: "Planned",
-        i1: "Viewer mode in the app, so you can receive notifications",
-        i2: "App translations: Romanian, Polish and more",
+        i1: "Push notifications on your phone when something happens",
+        i2: "More app languages: Polish and others (Romanian is available now, English is the default)",
         i3: "Link your own cloud drive (Google Drive, OneDrive, etc.) for archive storage",
         i4: "Access control: only you and the people you share with can open the stream",
         i5: "2-way audio",
@@ -347,7 +351,7 @@ const I18N = {
       badge: "Beta · Acces anticipat",
       title: "Transformă un telefon vechi într-o cameră de supraveghere live.",
       tagline: "SecondSight este o aplicație mobilă care îți permite să folosești un telefon vechi ca cameră de supraveghere. Ușurința de utilizare și confidențialitatea sunt obiectivele noastre principale.",
-      lead: "Vizionează acum din browser. Va urma și un viewer în aplicație. Video-ul este stocat local pe cameră în mod implicit. Va urma backup opțional în cloud. În prezent în beta, iar dezvoltarea se bazează pe feedback real.",
+      lead: "Vizionează din browser sau din aplicația SecondSight, pe alt telefon sau tabletă. Video-ul este stocat local pe cameră în mod implicit. Va urma backup opțional în cloud. În prezent în beta, iar dezvoltarea se bazează pe feedback real.",
       cta: "Ia aplicația"
     },
     signup: {
@@ -372,7 +376,7 @@ const I18N = {
       lead: "SecondSight rulează pe telefonul pe care îl ai deja într-un sertar.",
       step1: { title: "Instalează pe un telefon vechi", body: "Aplicația cameră SecondSight rulează pe iOS sau Android — orice dispozitiv nefolosit devine cameră." },
       step2: { title: "Transmite live, peer-to-peer", body: "Video-ul este trimis direct (WebRTC) către persoana cu care distribui linkul — serverul nostru ajută doar cele două dispozitive să se conecteze." },
-      step3: { title: "Vizionează din orice browser", body: "Deschide linkul privat pe un laptop sau alt telefon. Nu e nevoie de nicio aplicație separată pentru vizionare." }
+      step3: { title: "Vizionează din orice browser", body: "Deschide linkul privat în orice browser, pe un laptop sau alt telefon, sau folosește modul viewer al aplicației SecondSight." }
     },
     status: {
       title: "Ce funcționează azi și ce urmează",
@@ -383,12 +387,14 @@ const I18N = {
         i2: "Vizionarea înregistrărilor pe dispozitiv",
         i3: "Detectare de mișcare, cu înregistrare declanșată de mișcare",
         i4: "Acces din exterior fără configurare, prin rețea celulară",
-        i5: "Vizionare live din orice browser"
+        i5: "Vizionare live din orice browser",
+        i6: "Mod viewer în aplicație: asociezi camerele cu un cod QR și urmărești live, răsfoiești înregistrările și vezi evenimentele de pe alt telefon",
+        i7: "Aplicație disponibilă în engleză și română"
       },
       next: {
         title: "Planificat",
-        i1: "Mod viewer în aplicație, pentru a primi notificări",
-        i2: "Traduceri ale aplicației: română, poloneză și altele",
+        i1: "Notificări pe telefon când se întâmplă ceva",
+        i2: "Mai multe limbi pentru aplicație: poloneză și altele (româna e disponibilă acum, engleza e limba implicită)",
         i3: "Conectează-ți propriul cloud (Google Drive, OneDrive etc.) pentru stocarea arhivei",
         i4: "Securitate: doar tu și persoanele cu care partajezi puteți accesa transmisia",
         i5: "Audio bidirecțional",
