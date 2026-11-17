@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-17T11:30:25.322Z",
+  "generated_at": "2026-11-17T11:55:07.525Z",
   "model": "local-hash-embedding-v1",
   "dimensions": 256,
   "records": [],
