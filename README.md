@@ -19,10 +19,10 @@ Language is set by the `?lang=en` / `?lang=ro` URL parameter (shareable, one URL
 
 ## Download section (primary call to action)
 
-The hero button "Get the app" scrolls to `#signup`, the download section. It has no form and collects no data:
+The download section (`#signup`) has no form and collects no data:
 
 - **Android:** a button and QR code for the Firebase App Distribution invite link (group "Public testers", app `com.wf.secondsight`). Visitors join with their Google account; you can see who joined in Firebase console > App Distribution > Testers & Groups.
-- **iPhone / iPad:** a button and QR code for the public TestFlight link (`https://testflight.apple.com/join/KQEuW31z`). It is **hidden** (`hidden` on `#dl-ios-item`) until Apple has approved the beta build for external testing; remove the attribute then. Add `?preview=1` to the page address to see it before that.
+- **iPhone / iPad:** a button and QR code for the public TestFlight link (`https://testflight.apple.com/join/KQEuW31z`). Apple approved build 1.0 (13) for external testing on 2026-11-17, so it is shown.
 - The QR codes are static files (`qr-android.svg`, `qr-ios.svg`). If a link changes, regenerate them (for example with the Python `segno` package) and update the `href`.
 - The "Why we're asking" text and the optional survey sit directly under the download buttons.
 
